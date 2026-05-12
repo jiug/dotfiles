@@ -3,3 +3,5 @@ if status is-interactive
 end
 alias fiji='/home/hugo/Software/Fiji/fiji & disown'
 alias zen='Software/zen/zen & disown'
+alias obsidian='obsidian --no-sandbox & disown'
+bind \cy accept-autosuggestion
