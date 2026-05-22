@@ -119,6 +119,12 @@ vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 -- Enable break indent
 vim.o.breakindent = true
 
+-- Tab/Indentation settings
+vim.o.tabstop = 4 -- Width of tab character
+vim.o.shiftwidth = 4 -- Indent width
+vim.o.expandtab = false -- Use tabs, not spaces
+vim.o.softtabstop = 4 -- Edit as if tabstop=4 when mixing tabs/spaces
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -256,7 +262,14 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
-  { 'NMAC427/guess-indent.nvim', opts = {} },
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {
+      auto_cmd = true,
+      override_editorconfig = false,
+      filetype_exclude = { 'odin' }, -- Let Odin use global tab settings
+    },
+  },
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
@@ -598,7 +611,7 @@ require('lazy').setup({
         pyright = {},
         texlab = {},
         ruff = {},
-        texlab = {},
+        ols = {},
         -- rust_analyzer = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
