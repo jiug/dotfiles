@@ -140,4 +140,5 @@ export PATH="$PATH:$HOME/.local/share/yabridge"
 eval "$(~/.local/bin/mise activate)"
 
 # opencode
-export PATH=/home/hugo/.opencode/bin:$PATH
+export PATH="/home/hugo/.opencode/bin:$PATH"
+export PATH="/home/hugo/Software/odin:$PATH"
