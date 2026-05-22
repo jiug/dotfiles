@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "command": "cd ..",
+      "cwd": "/home/hugo/.pi/agent",
+      "timestamp": 1779425192947
+    },
+    {
+      "command": "cat package.json",
+      "cwd": "/home/hugo/.pi/agent/npm",
+      "timestamp": 1779425183344
+    },
+    {
+      "command": "ls",
+      "cwd": "/home/hugo/.pi/agent/npm",
+      "timestamp": 1779425172164
+    },
+    {
+      "command": "cd npm/",
+      "cwd": "/home/hugo/.pi/agent/npm",
+      "timestamp": 1779425169534
+    },
+    {
+      "command": "cd powerline-footer/",
+      "cwd": "/home/hugo/.pi/agent/powerline-footer",
+      "timestamp": 1779425152856
+    },
+    {
+      "command": "cd agent/",
+      "cwd": "/home/hugo/.pi/agent",
+      "timestamp": 1779425132119
+    },
+    {
+      "command": "cd ~/.pi",
+      "cwd": "/home/hugo/.pi",
+      "timestamp": 1779425128068
+    }
+  ]
+}
