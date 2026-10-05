@@ -2,6 +2,11 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Pi coding agent update with customizations sync (must be before interactive check)
+pi-update() {
+    pi update && /home/hugo/dotfiles/pi/.pi/agent/update-customizations.sh
+}
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -93,9 +98,15 @@ alias la='ls -A'
 alias l='ls -CF'
 alias mna='tmuxifier load-session mna'
 alias pid='tmuxifier load-session pid'
-alias mssc='tmuxifier load-session msc'
+alias mssc='tmuxifier load-session mssc'
 alias ptn='python3'
 alias tfm='tmuxifier load-session tfm'
+alias flippy='tmuxifier load-session flippy_bard'
+
+# Pi coding agent update with customizations sync
+pi-update() {
+    pi update && /home/hugo/dotfiles/pi/.pi/agent/update-customizations.sh
+}
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -139,6 +150,14 @@ export EDITOR=nvim
 export PATH="$PATH:$HOME/.local/share/yabridge"
 eval "$(~/.local/bin/mise activate)"
 
+# Set PYTHONPATH for virtual environment - fix module loading issues
+if [ -n "$TMUX" ]; then
+  export TERM=xterm-kitty
+  export PYTHONPATH="~/Learning/Máster/env/lib/python3.12/site-packages:~/.local/lib/python3.12/site-packages"
+fi
+
 # opencode
 export PATH="/home/hugo/.opencode/bin:$PATH"
 export PATH="/home/hugo/Software/odin:$PATH"
+
+export GEMINI_API_KEY=AIzaSyBLv2kV5WFBWu96sjbvyh3Qsf9uWBPqSxo

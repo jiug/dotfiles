@@ -1,0 +1,30 @@
+# yazi.toml
+
+[opener]
+edit = [
+	{ run = 'nvim "$@"', desc = "nvim", block = true, for = "unix" },
+]
+okular = [
+	{ run = 'okular "$@"', orphan = true, desc = "Okular", for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "$1"', desc = "Open", for = "linux" },
+	{ run = 'open "$@"', desc = "Open", for = "macos" },
+]
+reveal = [
+	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+]
+
+[open]
+rules = [
+	# Folder
+	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	# PDF
+	{ mime = "application/pdf", use = [ "okular" ] },
+	# Text
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	# Empty file
+	{ mime = "inode/x-empty", use = [ "edit" ] },
+	# Fallback
+	{ name = "*", use = [ "open", "reveal" ] },
+]

@@ -7,3 +7,9 @@ alias obsidian='obsidian --no-sandbox & disown'
 bind \cy accept-autosuggestion
 set -gx PATH $PATH /home/hugo/Software/odin
 
+# Launch nvim inside tmux to avoid double-stroke issue
+function nvim
+    tmux new-window -n nvim -a -c $PWD nvim $argv
+end
+
+

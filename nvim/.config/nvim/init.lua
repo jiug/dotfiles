@@ -313,24 +313,23 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    opts = {
-      -- delay between pressing a key and opening which-key (milliseconds)
-      delay = 0,
-      icons = { mappings = vim.g.have_nerd_font },
+   { -- Useful plugin to show you pending keybinds.
+     'folke/which-key.nvim',
+     event = 'VimEnter',
+     opts = {
+       -- delay between pressing a key and opening which-key (milliseconds)
+       delay = 0,
+       icons = { mappings = vim.g.have_nerd_font },
 
-      -- Document existing key chains
-      spec = {
-        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      },
-    },
-  },
-
-  -- NOTE: Plugins can specify dependencies.
+       -- Document existing key chains
+       spec = {
+         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+         { '<leader>t', group = '[T]oggle' },
+         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+       },
+     },
+   },
+   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
   -- you do for a plugin at the top level, you can do for a dependency.
@@ -912,6 +911,21 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
+  -- Odin commands
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'odin',
+    callback = function()
+      vim.keymap.set('n', '<leader>oc', function()
+        vim.cmd 'write'
+        vim.cmd 'terminal odin run .'
+      end, { desc = '[O]din [R]un' })
+      vim.keymap.set('n', '<leader>ob', function()
+        vim.cmd 'write'
+        vim.cmd 'terminal odin build .'
+      end, { desc = '[O]din [B]uild' })
+    end,
+  }),
+}, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
@@ -933,5 +947,6 @@ require('lazy').setup({
   },
 })
 
+vim.cmd 'set spell spelllang=es,en'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
